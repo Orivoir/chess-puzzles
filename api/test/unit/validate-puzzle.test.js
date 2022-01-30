@@ -1,5 +1,5 @@
 const {assert, expect} = require('chai');
-const validatePuzzle = require('./../../lib/validate-puzzle');
+const {validatePuzzle} = require('./../../lib/validate-puzzle');
 const fixtures = require('./fixtures/validate-puzzle.json');
 
 describe('/lib/validate-puzzle.js', () => {

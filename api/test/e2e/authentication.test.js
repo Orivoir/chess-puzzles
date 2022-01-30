@@ -10,6 +10,44 @@ describe('POST /admin/login', () => {
     server.close();
   });
 
+  const onCreateTokens = (response) => {
+    
+    const {body} = response;
+
+    try {
+      assert.isTrue(body.success);
+      assert.isObject(body.token);
+      assert.isObject(body.refreshToken);
+
+      assert.isString(body.token.value);
+      assert.isString(body.refreshToken.value);
+
+      assert.isNumber(body.refreshToken.expiresAt);
+      assert.isNumber(body.token.expiresAt);
+    } catch(error) {
+      return error;
+    }
+
+    const {token} = body;
+
+    // verifiy integrity token
+    let payload = null;
+    try {
+      payload = jwt.verify(token.value, jwtConfig.normal.secret, {
+        algorithms: [jwtConfig.normal.algorithm]
+      });
+    } catch(jsonWebTokenError) {
+      return jsonWebTokenError;
+    }
+    try {
+      assert.isObject(payload);
+      expect(payload.login).to.be.equal("test");
+      expect(payload.password).to.be.equal("test");
+    } catch(error) {
+      return error;
+    }
+  };
+
   it("should credentials errors with status 200", (done) => {
 
     clientHttp(router)
@@ -43,38 +81,8 @@ describe('POST /admin/login', () => {
     .expect('Content-Type', /json/)
     .expect(200)
     .then(response => {
-
-      const {body} = response;
-
-      try {
-        assert.isTrue(body.success);
-        assert.isNumber(body.expiresAt);
-        assert.isString(body.token);
-      } catch(error) {
-        done(error);
-      }
-
-      const {token} = body;
-
-      // verfiy integrity token
-      let payload = null;
-      try {
-        payload = jwt.verify(token, jwtConfig.secret, {
-          algorithms: [jwtConfig.algorithm]
-        });
-      } catch(jsonWebTokenError) {
-        done(jsonWebTokenError);
-      }
-
-      try {
-        assert.isObject(payload);
-        expect(payload.login).to.be.equal("test");
-        expect(payload.password).to.be.equal("test");
-        done();
-      } catch(error) {
-        done(error);
-      }
-        
+      done(onCreateTokens(response));
     })
   });
+
 });
