@@ -1,0 +1,181 @@
+[
+  {
+    "entry": null,
+    "output": {
+      "throw": true
+    }
+  },
+  {
+    "entry": {
+      "themes": [
+        "foobar",
+        "61f6760a53bb3c77d8f15bf3",
+        "61f6760a53bb3c77d8f15bf3"
+      ],
+      "position": "rnbqkb1r/pp2pppp/1n1p4/8/2PP4/8/PP3PPP/RNBQKBNR w KQkq - 0 6",
+      "moves": [
+        "b1-c3",
+        "g8-f6",
+        "f1-b5"
+      ],
+      "difficulty": 900 
+    },
+    "output": {
+      "isValid": true,
+      "throw": false,
+      "errors": null,
+      "themes-length": 2,
+      "moves-length": 3
+    }
+  },
+  {
+    "entry": {
+      "themes": [
+        "foobar",
+        "61f6760a53bb3c77d8f15bf3",
+        "61f6760a53bb3c77d8f15bf3"
+      ],
+      "position": "rnbqkb1r/pp2pppp/1n1p4/8/2PP4/8/PP3PPP/RNBQKBNR w KQkq - 0 6",
+      "moves": [
+        "b1-c3",
+        "g8-f6",
+        "f1-b5"
+      ],
+      "difficulty": -300 
+    },
+    "output": {
+      "isValid": false,
+      "throw": false,
+      "errors": {
+        "difficulty": "required field number between 300 and 3600"
+      },
+      "themes-length": 2,
+      "moves-length": 3
+    }
+  },
+  {
+    "entry": {
+      "themes": [
+        "foobar",
+        "61f6760a53bb3c77d8f15bf3",
+        "61f6760a53bb3c77d8f15bf3"
+      ],
+      "position": "rnbqkb1r/pp2pppp/1n1p4/8/2PP4/8/PP3PPP/RNBQKBNR w KQkq - 0 6",
+      "moves": [
+        "b1-c3",
+        "g8-f6",
+        "f1-b5"
+      ],
+      "difficulty": 100000 
+    },
+    "output": {
+      "isValid": false,
+      "throw": false,
+      "errors": {
+        "difficulty": "required field number between 300 and 3600"
+      },
+      "themes-length": 2,
+      "moves-length": 3
+    }
+  },
+  {
+    "entry": {
+      "themes": [
+        "foobar",
+        "lorem-ipsum",
+        "bla bla"
+      ],
+      "position": "rnbqkb1r/pp2pppp/1n1p4/8/2PP4/8/PP3PPP/RNBQKBNR w KQkq - 0 6",
+      "moves": [
+        "b1-c3",
+        "g8-f6",
+        "f1-b5"
+      ],
+      "difficulty": 900 
+    },
+    "output": {
+      "isValid": false,
+      "throw": false,
+      "errors": {
+        "themes": "required fields themes string[] cannot be empty valid data"
+      },
+      "themes-length": 0,
+      "moves-length": 3
+    }
+  },
+  {
+    "entry": {
+      "themes": [
+        "61f6760a53bb3c77d8f15bf3",
+        "61f6760a53bb3c77d8f15bf3",
+        "61f6760a53bb3c77d8f15bf3"
+      ],
+      "position": "rnbqkb1r/pp2pppp/1n1p4/8/2PP4/8/PP3PPP/RNBQ2BNR w KQkq - 0 6",
+      "moves": [
+        "b1-c3",
+        "g8-f6",
+        "f1-b5"
+      ],
+      "difficulty": 900 
+    },
+    "output": {
+      "isValid": false,
+      "throw": false,
+      "errors": {
+        "position": "required field string chess position FEN notation contains 10 errors, assume as standard variantion chess"
+      },
+      "themes-length": 3,
+      "moves-length": 3
+    }
+  },
+  {
+    "entry": {
+      "themes": [
+        "61f6760a53bb3c77d8f15bf3",
+        "61f6760a53bb3c77d8f15bf3",
+        "61f6760a53bb3c77d8f15bf3"
+      ],
+      "position": "rnbqkbnr/1ppp1Qpp/8/p3p3/2B1P3/8/PPPP1PPP/RNB1K1NR b KQkq - 0 4",
+      "moves": [
+        "b1-c3",
+        "g8-f6",
+        "f1-b5"
+      ],
+      "difficulty": 900 
+    },
+    "output": {
+      "isValid": false,
+      "throw": false,
+      "errors": {
+        "position": "FEN is valid but already finished position"
+      },
+      "themes-length": 3,
+      "moves-length": 3
+    }
+  },
+  {
+    "entry": {
+      "themes": [
+        "61f6760a53bb3c77d8f15bf3",
+        "61f6760a53bb3c77d8f15bf3",
+        "61f6760a53bb3c77d8f15bf3"
+      ],
+      "position": "rnbq1rk1/ppp1bppp/5n2/3p4/3P4/3B1N2/PPP2PPP/RNBQ1R2 w - - 5 7",
+      "moves": [
+        "b1-c3",
+        "g8-f6",
+        "f1-b5"
+      ],
+      "difficulty": 900 
+    },
+    "output": {
+      "isValid": false,
+      "throw": false,
+      "errors": {
+        "position": "FEN is valid but already finished position"
+      },
+      "themes-length": 3,
+      "moves-length": 3
+    }
+  }
+]
