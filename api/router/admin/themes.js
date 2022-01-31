@@ -1,67 +1,9 @@
 const middlewareAuthorization = require("./../middlewares/authorization");
-const middlewarePaginator = require("./../middlewares/paginator");
-const middlewareGetOneRessource = require("./../middlewares/get-one-ressource");
 const middlewareDeleteOneRessource = require("./../middlewares/delete-one-ressource");
 
 const {PUZZLE: {PUZZLE_THEME_PATTERN_NAME}} = require("./../../helper");
 const {Theme} = require("./../../models");
 const {isValidObjectId} = require("mongoose");
-
-// GET /admin/themes/
-function getAll(request, response){
-
-  let {
-    countSkip, limitPerPage, page
-  } = request.paginator;
-
-  Theme.count()
-    .then(countDocuments => {
-
-      if(limitPerPage > countDocuments) {
-        limitPerPage = countDocuments;
-      }
-
-      const totalPage = Math.ceil(countDocuments / limitPerPage);
-
-      if(page > totalPage) {
-        page = totalPage;
-      }
-
-      Theme.find({
-      })
-        .skip(countSkip)
-        .limit(limitPerPage)
-        .then((documents) => {
-          response
-            .status(200)
-            .json({
-              page,
-              totalPage,
-              totalItems: countDocuments,
-              limitPerPage,
-              data: documents
-            });
-        })
-        .catch((error) => {
-          response
-            .status(502)
-            .json({
-              message: error.message,
-              success: false
-            });
-        });
-
-    })
-    .catch((error) => {
-      response
-        .status(502)
-        .json({
-          message: error.message,
-          success: false
-        });
-    });
-
-}
 
 // PUT /admin/theme/:id
 function put(request, response){
@@ -176,15 +118,9 @@ function post(request, response){
 
 
 module.exports = {
-  get: [middlewareAuthorization, middlewareGetOneRessource({
-    ressourceName: "Theme",
-    from: "params",
-    documentName: "theme"
-  })],
-  getAll: [middlewareAuthorization, middlewarePaginator, getAll],
-  put: [middlewareAuthorization, put],
-  post: [middlewareAuthorization, post],
-  delete: [middlewareAuthorization, middlewareDeleteOneRessource({
+  put: [middlewareAuthorization(), put],
+  post: [middlewareAuthorization(), post],
+  delete: [middlewareAuthorization(), middlewareDeleteOneRessource({
     ressourceName: "Theme",
     documentName: "theme",
     from: "params"
